@@ -146,9 +146,10 @@ ukbcase_diag <- function(icd10=NULL,icd9=NULL,hesin=NULL,hesin_diag10=NULL,
 
   # main icd9 from hesin dataset
   if (icd9main==T & (!is.null(icd9))) {
-    hesin_diag_3 <- hesin[which(hesin$diag_icd9 %in% icd9),c('eid','record_id','diag_icd9','epistart')]
-    hesin_diag_3$epistart <- as.Date(hesin_diag_3$epistart)
-
+    hesin_diag_3 <- hesin[which(hesin$diag_icd9 %in% icd9),c('eid','record_id','diag_icd9','admidate')]
+    hesin_diag_3$admidate <- as.Date(hesin_diag_3$admidate)
+    names(hesin_diag_3) <- c('eid','record_id','diag_icd9','epistart')
+    
     if(is.null(hesin_diag)){
       hesin_diag <- hesin_diag_3
     }else{
